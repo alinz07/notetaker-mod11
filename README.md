@@ -26,7 +26,7 @@ A notetake app can help organize thoughts and keep track of tasks that one needs
 <br/>
 
 ## **Things I learned**
-* 
+* When serving static files, if the server.js or public directory are not in the root directory of the project (in this app they are in the Develop dir), you have to be more specific when passing the root argument for the express.static() method.
 * 
 * 
 <br/>

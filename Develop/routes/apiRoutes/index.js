@@ -15,7 +15,8 @@ router.post('/notes', (req, res) => {
     //add it to the db.json file
 
     //return new note to the client
-    res.json('Post Malone!');
+    console.log(req.body);
+    res.json(req.body);
     
 })
 
