@@ -25,7 +25,7 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
+const getNotes = () => 
   fetch('/api/notes', {
     method: 'GET',
     headers: {
@@ -42,13 +42,22 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
-const deleteNote = (id) =>
+const deleteNote = () => 
+  fetch('/api/notes/delArray', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+const deleteNoteHelper = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+  
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -84,6 +93,7 @@ const handleNoteDelete = (e) => {
 
   //e.target is the i element (delete button)
   const note = e.target;
+
   //it's parent elemnt is the li element
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
@@ -91,11 +101,15 @@ const handleNoteDelete = (e) => {
     activeNote = {};
   }
 
-  deleteNote(noteId).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
-};
+  deleteNote()
+  .then(() => {
+    deleteNoteHelper(noteId)
+    .then(() => {
+      getAndRenderNotes();
+      renderActiveNote();
+    })
+  })  
+};  
 
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
