@@ -82,7 +82,9 @@ const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
+  //e.target is the i element (delete button)
   const note = e.target;
+  //it's parent elemnt is the li element
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
   if (activeNote.id === noteId) {
@@ -118,7 +120,20 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  //notes is the returned promise from getNotes() and needs the
+  //json method to parse in into an array of note objects
+  //which have the property title and text
   let jsonNotes = await notes.json();
+
+  //every time we run this function I want to initialize a counter
+  //that will be assigned as the date-note id: property and will
+  //increment by one for each note. this part of the function is 
+  //further below. You have to start with 1 because the renderactivenote
+  //function checks for (activeNote.id) which will return 0, a falsy
+  //value if you start with 0.
+  let count=1
+
+  // noteList = document.querySelectorAll('.list-container .list-group');
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -159,6 +174,9 @@ const renderNoteList = async (notes) => {
   }
 
   jsonNotes.forEach((note) => {
+    //add id property to each js object in the array
+    note.id = count;
+    count +=1;
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
 
@@ -171,6 +189,9 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
+//renderNoteList doesn't need to explicitly state that it's
+//going to use the promise as the argument to pass, but it does
+//pass the promise that is returned from getNotes.
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {

@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const path = require('path');
+const fs = require('fs');
 //const { filterByQuery, findById, createNewAnimal, validateAnimals} = require('../../../public/assets/js/index.js');
 const notes = require('../../db/db.json');
 
@@ -9,15 +11,14 @@ router.get('/notes', (req, res) => {
 
 router.post('/notes', (req, res) => {
     //receive a new note to post on the request body
+    const newNote = req.body
+    notes.push(newNote);
+    fs.writeFileSync(
+        path.join(__dirname, '/../../db/db.json'),
+        JSON.stringify(notes, null, 2)
+    )
 
-    //create a unique id for the note and look into npm packages that will do this
-
-    //add it to the db.json file
-
-    //return new note to the client
-    console.log(req.body);
     res.json(req.body);
-    
 })
 
 module.exports = router;
