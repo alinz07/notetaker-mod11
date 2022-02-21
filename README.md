@@ -1,9 +1,9 @@
 # Note Taker
 <br/>
 
-## **Link** to video walkthrough to demonstrate app functionality:
-
+## **Link** to video walkthrough to demonstrate app functionality: https://drive.google.com/file/d/1RqgoJq9Rtg6SPvD4Cn6zXNH8bs2z6SuA/view 
 ## **Link** to project repository: https://github.com/alinz07/notetaker-mod11 
+<br/>
 
 ## **Motivation**
 Create an application to write and save notes. Use the express package on the back end and retrieve data from a JSON file.
@@ -27,12 +27,11 @@ A notetake app can help organize thoughts and keep track of tasks that one needs
 
 ## **Things I learned**
 * When serving static files, if the server.js or public directory are not in the root directory of the project (in this app they are in the Develop dir), you have to be more specific when passing the root argument for the express.static() method.
-* 
-* 
+* If you rewrite a json file that the server is reading and whose contents are being imported into your js routing file, that rewritten json file can only be accessed when you restart the server. You can, however, manipulate the json file by directly using .push/.splice/.pop on the imported object (because the json object was an array of objects). Our renderNoteList function accesses the json file and returns it's array of objects to create html. When you run this function after directly manipulating the imported object, it will correctly render the changes without having to restart the server.
 <br/>
 
 ## **What makes this project stand out?**
-
+This project's modularization makes it stand out. I have all of my note routes in one file, scripts to run my html pages, and scripts to run the server all in different, well labeled directories, and with sensical filenames. I didn't have to add much code to the starter code to get this project running, but I did have to read a lot of documentation to make tweaks that support my file structure and desired functionality. It was a fun challenge.
 
 <br/>
 
@@ -64,8 +63,7 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 <br/>
 
 ## **Screenshot of Web Application**
-![gif-of-webapp](./Develop/mockup/challenge-11.gif)
-An example README file that was created with this app can be found in the Develop folder and is named README.md
+![gif-of-webapp](./Develop/public/assets/challenge-11.gif)
 <br/>
 
 ## **How to Contribute**
