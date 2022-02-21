@@ -1,6 +1,8 @@
 # Note Taker
 <br/>
 
+## **Link** to app deployed on heroku: https://notetaker-mod11.herokuapp.com/ 
+
 ## **Link** to video walkthrough to demonstrate app functionality: https://drive.google.com/file/d/1RqgoJq9Rtg6SPvD4Cn6zXNH8bs2z6SuA/view 
 ## **Link** to project repository: https://github.com/alinz07/notetaker-mod11 
 <br/>
